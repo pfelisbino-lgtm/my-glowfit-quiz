@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - My Glowfit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-card bounce-in">
+            <div class="logo-area">
+                <div class="logo-icon">🌿</div>
+                <h1>My Glowfit</h1>
+                <p>Your Personal Path to Wellness</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" placeholder="Password" required id="login-pass">
+                    <ion-icon name="eye-outline" class="toggle-pass" onclick="togglePass('login-pass')"></ion-icon>
+                </div>
+                <div class="form-actions">
+                    <a href="#" class="forgot-pass">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-primary btn-block">Log In</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form" onsubmit="handleSignup(event)">
+                <div class="input-group">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" placeholder="Create Password" required id="signup-pass">
+                    <ion-icon name="eye-outline" class="toggle-pass" onclick="togglePass('signup-pass')"></ion-icon>
+                </div>
+                <div class="terms-check">
+                    <input type="checkbox" required id="terms">
+                    <label for="terms">I agree to the <a href="#">Terms</a> & <a href="#">Privacy</a></label>
+                </div>
+                <button type="submit" class="btn-primary btn-block">Create Account</button>
+            </form>
+
+            <div class="auth-footer">
+                <p id="auth-switch-text">Don't have an account? <a href="#" onclick="switchTab('signup')">Sign Up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const tabs = document.querySelectorAll('.tab-btn');
+            const footerText = document.getElementById('auth-switch-text');
+
+            tabs.forEach(t => t.classList.remove('active'));
+
+            if (tab === 'login') {
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+                tabs[0].classList.add('active');
+                footerText.innerHTML = 'Don\'t have an account? <a href="#" onclick="switchTab(\'signup\')">Sign Up</a>';
+            } else {
+                loginForm.classList.remove('active');
+                signupForm.classList.add('active');
+                tabs[1].classList.add('active');
+                footerText.innerHTML = 'Already have an account? <a href="#" onclick="switchTab(\'login\')">Log In</a>';
+            }
+        }
+
+        function togglePass(id) {
+            const input = document.getElementById(id);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerHTML = '<ion-icon name="refresh" class="spin"></ion-icon> Logging in...';
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerHTML = '<ion-icon name="refresh" class="spin"></ion-icon> Creating account...';
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

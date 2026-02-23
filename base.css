@@ -1,0 +1,14 @@
+/* Main CSS imports and generic styles */
+/* This file is kept lean as specialized CSS files (auth.css, dashboard.css, app_sales.css) handle specific views. 
+   This ensures modularity and ease of maintenance.
+*/
+
+:root {
+    --primary: #2D9B6B;
+    --text-main: #333;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
+}

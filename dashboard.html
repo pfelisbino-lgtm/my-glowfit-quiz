@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - My Glowfit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Navigation (Desktop) -->
+        <aside class="sidebar">
+            <div class="logo">🌿 My Glowfit</div>
+            <nav class="side-nav">
+                <a href="#" class="nav-item active" onclick="showTab('home', this)"><ion-icon
+                        name="home-outline"></ion-icon> Dashboard</a>
+                <a href="#" class="nav-item" onclick="showTab('recipes', this)"><ion-icon
+                        name="restaurant-outline"></ion-icon> Recipes</a>
+                <a href="#" class="nav-item" onclick="showTab('workouts', this)"><ion-icon
+                        name="fitness-outline"></ion-icon> Workouts</a>
+                <a href="#" class="nav-item" onclick="showTab('progress', this)"><ion-icon
+                        name="trending-up-outline"></ion-icon> Progress</a>
+                <a href="#" class="nav-item" onclick="showTab('profile', this)"><ion-icon
+                        name="person-outline"></ion-icon> Profile</a>
+            </nav>
+            <div class="logout-area">
+                <a href="login.html" class="nav-item logout"><ion-icon name="log-out-outline"></ion-icon> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="greeting">
+                    <h1>Welcome back, <span id="user-name">Sarah</span>! 👋</h1>
+                    <p>Let's crush your goals today.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn"><ion-icon name="notifications-outline"></ion-icon></button>
+                    <div class="avatar" onclick="showTab('profile', null)">S</div>
+                </div>
+            </header>
+
+            <!-- Dashboard Goal Card -->
+            <section id="goal-card-section" class="goal-card visible">
+                <div class="goal-info">
+                    <h3>Current Goal: Lose 10kg</h3>
+                    <p>You're doing great! Keep it up.</p>
+                </div>
+                <div class="goal-progress">
+                    <div class="progress-labels">
+                        <span>Progress</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 45%;"></div>
+                    </div>
+                    <small>4.5kg lost • 5.5kg to go</small>
+                </div>
+            </section>
+
+            <!-- TAB 1: HOME -->
+            <div id="tab-home" class="tab-content active">
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon-box green"><ion-icon name="flame"></ion-icon></div>
+                        <div class="stat-value">1,250</div>
+                        <div class="stat-label">Calories Eaten</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-box blue"><ion-icon name="water"></ion-icon></div>
+                        <div class="stat-value">1.5L</div>
+                        <div class="stat-label">Water Drunk</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-box orange"><ion-icon name="footsteps"></ion-icon></div>
+                        <div class="stat-value">5,432</div>
+                        <div class="stat-label">Steps Taken</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-box purple"><ion-icon name="moon"></ion-icon></div>
+                        <div class="stat-value">7h 20m</div>
+                        <div class="stat-label">Sleep</div>
+                    </div>
+                </section>
+
+                <div class="content-columns">
+                    <section class="plan-section">
+                        <h2 class="section-title">Today's Recommendations</h2>
+                        <div class="plan-item" onclick="showTab('recipes', null)">
+                            <div class="plan-icon food"><ion-icon name="cafe"></ion-icon></div>
+                            <div class="plan-details">
+                                <h4>Breakfast Suggestion</h4>
+                                <p>Oatmeal with Berries and Nuts (350 cal)</p>
+                            </div>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="plan-item" onclick="showTab('workouts', null)">
+                            <div class="plan-icon workout"><ion-icon name="barbell"></ion-icon></div>
+                            <div class="plan-details">
+                                <h4>Workout Suggestion</h4>
+                                <p>20 min HIIT Cardio (Burns 300 cal)</p>
+                            </div>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </section>
+
+                    <section class="activity-section">
+                        <h2 class="section-title">Daily Tip</h2>
+                        <div class="tip-card">
+                            <div class="tip-icon"><ion-icon name="bulb"></ion-icon></div>
+                            <div>
+                                <h4>Hydration Hack</h4>
+                                <p>Drink a glass of water before every meal to feel full faster.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- TAB 2: RECIPES -->
+            <div id="tab-recipes" class="tab-content">
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <ion-icon name="search-outline"></ion-icon>
+                        <input type="text" placeholder="Search healthy recipes...">
+                    </div>
+                    <div class="filter-tags">
+                        <span class="tag active">All</span>
+                        <span class="tag">Breakfast</span>
+                        <span class="tag">Lunch</span>
+                        <span class="tag">Dinner</span>
+                        <span class="tag">Snacks</span>
+                    </div>
+                </div>
+
+                <div class="recipes-grid">
+                    <div class="recipe-card">
+                        <div class="recipe-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500');">
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-meta">
+                                <span class="cal-badge">350 cal</span>
+                                <span class="time-badge">15 min</span>
+                            </div>
+                            <h3>Grilled Chicken Salad</h3>
+                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <button class="btn-sm btn-outline">View Recipe</button>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500');">
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-meta">
+                                <span class="cal-badge">450 cal</span>
+                                <span class="time-badge">25 min</span>
+                            </div>
+                            <h3>Salmon & Broccoli</h3>
+                            <div class="rating">⭐⭐⭐⭐</div>
+                            <button class="btn-sm btn-outline">View Recipe</button>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=500');">
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-meta">
+                                <span class="cal-badge">150 cal</span>
+                                <span class="time-badge">10 min</span>
+                            </div>
+                            <h3>Egg White Omelet</h3>
+                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <button class="btn-sm btn-outline">View Recipe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: WORKOUTS -->
+            <div id="tab-workouts" class="tab-content">
+                <div class="filter-bar">
+                    <div class="filter-tags">
+                        <span class="tag active">All Levels</span>
+                        <span class="tag">Beginner</span>
+                        <span class="tag">Intermediate</span>
+                        <span class="tag">Advanced</span>
+                    </div>
+                </div>
+
+                <div class="workouts-list">
+                    <div class="workout-card">
+                        <div class="workout-icon"><ion-icon name="flash"></ion-icon></div>
+                        <div class="workout-info">
+                            <h3>HIIT Blast</h3>
+                            <p>High Intensity Interval Training to burn fat fast.</p>
+                            <div class="tags">
+                                <span class="tag-sm">20 min</span>
+                                <span class="tag-sm">Advanced</span>
+                                <span class="tag-sm fire">300 cal</span>
+                            </div>
+                        </div>
+                        <button class="btn-sm btn-primary">Start</button>
+                    </div>
+                    <div class="workout-card">
+                        <div class="workout-icon blue"><ion-icon name="body"></ion-icon></div>
+                        <div class="workout-info">
+                            <h3>Full Body Strength</h3>
+                            <p>Build muscle and tone your body without equipment.</p>
+                            <div class="tags">
+                                <span class="tag-sm">30 min</span>
+                                <span class="tag-sm">Intermediate</span>
+                                <span class="tag-sm fire">250 cal</span>
+                            </div>
+                        </div>
+                        <button class="btn-sm btn-primary">Start</button>
+                    </div>
+                    <div class="workout-card">
+                        <div class="workout-icon purple"><ion-icon name="infinite"></ion-icon></div>
+                        <div class="workout-info">
+                            <h3>Yoga Flow</h3>
+                            <p>Relax and stretch your muscles to improve flexibility.</p>
+                            <div class="tags">
+                                <span class="tag-sm">25 min</span>
+                                <span class="tag-sm">Beginner</span>
+                                <span class="tag-sm fire">80 cal</span>
+                            </div>
+                        </div>
+                        <button class="btn-sm btn-primary">Start</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: PROGRESS -->
+            <div id="tab-progress" class="tab-content">
+                <div class="progress-grid">
+                    <div class="chart-container">
+                        <h3>Weight Loss Journey</h3>
+                        <canvas id="weightChart"></canvas>
+                    </div>
+                    <div class="achievements-card">
+                        <h3>Achievements</h3>
+                        <div class="badge-grid">
+                            <div class="badge-item">
+                                <div class="badge-icon"><ion-icon name="flame"></ion-icon></div>
+                                <span>7-Day Streak</span>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon"><ion-icon name="trophy"></ion-icon></div>
+                                <span>First 5kg</span>
+                            </div>
+                            <div class="badge-item locked">
+                                <div class="badge-icon"><ion-icon name="lock-closed"></ion-icon></div>
+                                <span>10kg Club</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PROFILE -->
+            <div id="tab-profile" class="tab-content">
+                <div class="profile-header">
+                    <div class="profile-pic-large">S</div>
+                    <h2>Sarah Miller</h2>
+                    <p>Member since Jan 2024</p>
+                    <button class="btn-sm btn-outline">Edit Profile</button>
+                </div>
+
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <ion-icon name="notifications-outline"></ion-icon> Notifications
+                        </div>
+                        <div class="toggle-switch active"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <ion-icon name="lock-closed-outline"></ion-icon> Privacy & Security
+                        </div>
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <ion-icon name="language-outline"></ion-icon> Language
+                        </div>
+                        <span>English</span>
+                    </div>
+                    <div class="setting-item danger">
+                        <div class="setting-label">
+                            <ion-icon name="trash-outline"></ion-icon> Delete Account
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Mobile Bottom Nav -->
+        <nav class="mobile-nav">
+            <a href="#" class="mobile-nav-item active" onclick="showTab('home', this)"><ion-icon
+                    name="home"></ion-icon></a>
+            <a href="#" class="mobile-nav-item" onclick="showTab('recipes', this)"><ion-icon
+                    name="restaurant"></ion-icon></a>
+            <div class="fab-center" onclick="showTab('workouts', null)"><ion-icon name="fitness"></ion-icon></div>
+            <a href="#" class="mobile-nav-item" onclick="showTab('progress', this)"><ion-icon
+                    name="trending-up"></ion-icon></a>
+            <a href="#" class="mobile-nav-item" onclick="showTab('profile', this)"><ion-icon
+                    name="person"></ion-icon></a>
+        </nav>
+    </div>
+
+    <script>
+        // Tab Logic
+        function showTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            if (element) {
+                document.querySelectorAll('.side-nav .nav-item').forEach(item => item.classList.remove('active'));
+                if (element.classList.contains('nav-item')) {
+                    element.classList.add('active');
+                }
+            }
+
+            const mobileItems = document.querySelectorAll('.mobile-nav-item');
+            mobileItems.forEach(item => item.classList.remove('active'));
+        }
+
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('weightChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    datasets: [{
+                        label: 'Weight (kg)',
+                        data: [75, 74.2, 73.5, 72.8, 71.5, 70.5],
+                        borderColor: '#2D9B6B',
+                        backgroundColor: 'rgba(45, 155, 107, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: false } }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
