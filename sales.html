@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <style>
         /* Extra styles specific to Sales Page */
         .sales-container {
@@ -70,15 +72,47 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        /* Pricing Grid Styles */
+        .pricing-grid {
+            margin: 3rem 0;
+        }
+
+        .pricing-card-saas {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card-saas:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .pricing-card-saas.featured:hover {
+            transform: scale(1.07) translateY(-5px) !important;
+        }
+
+        .pricing-card-saas a:hover {
+            filter: brightness(1.1);
+        }
     </style>
 </head>
 
 <body>
     <div id="sales-app" class="sales-container">
-        <!-- Dynamic Header -->
         <h1 id="sales-headline" class="section-title" style="font-size: 2rem; color: var(--primary-dark);">
             Loading your plan...
         </h1>
+
+        <!-- Real Transformations Hero Image -->
+        <div class="text-center" style="margin: 2rem 0;">
+            <div
+                style="max-width: 800px; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <img src="./ANTES E DEPOIS.png" alt="Real Transformations"
+                    style="width: 100%; height: auto; display: block;">
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-style: italic;">Real results from real users
+                following the My Glowfit protocol.</p>
+        </div>
 
         <!-- VSL Section -->
         <div class="vsl-wrapper">
@@ -104,8 +138,10 @@
             </div>
 
             <p class="video-description">
-                Discover the 5 scientific steps to accelerate your metabolism and lose weight naturally. Join thousands
-                of people who have already transformed their lives with My Glowfit!
+                Discover the scientific approach to <strong>Long-term Health Transformation</strong>. Our method focuses
+                on
+                <strong>Continuous Metabolic Support</strong> to ensure you not only lose weight but keep it off for
+                good, especially designed for the unique needs of women 40+.
             </p>
         </div>
 
@@ -133,10 +169,20 @@
         </div>
 
         <div class="benefit-card">
+            <div class="benefit-icon">�</div>
+            <div>
+                <h3 class="option-title">Monthly Progress Tracking</h3>
+                <p class="option-subtitle">Stay motivated with data-driven insights. We track your metabolic evolution
+                    to adjust your plan in real-time.</p>
+            </div>
+        </div>
+
+        <div class="benefit-card">
             <div class="benefit-icon">🔥</div>
             <div>
-                <h3 class="option-title">Acceleration Protocols</h3>
-                <p class="option-subtitle">Specific techniques to unlock fat burning in as little as 72 hours.</p>
+                <h3 class="option-title">Metabolic Recovery</h3>
+                <p class="option-subtitle">Specific techniques to unlock fat burning and restore your hormonal balance
+                    for sustainable energy.</p>
             </div>
         </div>
 
@@ -153,21 +199,144 @@
         </div>
 
         <!-- Pricing & CTA -->
-        <div class="price-section">
-            <p class="mb-2">Lifetime Access to My Glowfit</p>
-            <div class="old-price">€59.00</div>
-            <div class="price-tag">€24.99</div>
-            <p class="mb-4" style="color: var(--success); font-weight: 600;">Special Launch Offer</p>
+        <h2 class="section-title" style="margin-top: 4rem;">Choose Your Transformation Plan</h2>
+        <p class="text-center" style="color: var(--text-secondary); margin-top: -1rem; margin-bottom: 2rem;">
+            Commit to your health with our flexible subscription options.
+        </p>
 
-            <a href="https://pay.hotmart.com/G104412194U" target="_blank" class="btn btn-primary"
-                style="width: 100%; padding: 1.5rem; font-size: 1.5rem;">
-                YES! I Want to Start Now
-            </a>
-
-            <div style="margin-top: 1rem; font-size: 0.8rem; display: flex; justify-content: center; gap: 1rem;">
-                <span>🔒 Secure Purchase</span>
-                <span>✅ 30-Day Guarantee</span>
+        <div class="pricing-grid"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: stretch;">
+            <!-- Monthly Plan -->
+            <div class="pricing-card-saas"
+                style="background: #ffffff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; align-items: center; height: 100%; border: 2px solid #E5E7EB;">
+                <div style="width: 100%;">
+                    <h3 style="color: #2c3e50; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Monthly Plan
+                    </h3>
+                    <div class="price" style="font-size: 2.75rem; font-weight: 800; margin: 1.5rem 0; color: #2c3e50;">
+                        €12.29<span style="font-size: 1.1rem; color: #64748b; font-weight: 500;">/mo</span></div>
+                    <div class="pricing-benefits" style="text-align: left; margin: 2rem 0; width: 100%;">
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            Continuous Support
+                        </div>
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            Monthly Tracking
+                        </div>
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            Cancel Anytime
+                        </div>
+                    </div>
+                </div>
+                <a href="https://hotmart.com/en/marketplace/products/my-glowfit/T104655350C?off=z4hff9ox"
+                    target="_blank"
+                    style="display: block; width: 100%; background: #10b981; color: white; padding: 1.1rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1rem; margin-top: auto;">
+                    Get Started
+                </a>
             </div>
+
+            <!-- Semester Plan -->
+            <div class="pricing-card-saas"
+                style="background: #ffffff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; align-items: center; height: 100%; position: relative; border: 2px solid #E5E7EB;">
+                <div
+                    style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #f97316; color: white; padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3); z-index: 5;">
+                    Save 5%
+                </div>
+                <div style="width: 100%;">
+                    <h3 style="color: #2c3e50; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Semester
+                        Plan</h3>
+                    <div class="price" style="font-size: 2.75rem; font-weight: 800; margin: 1.5rem 0; color: #2c3e50;">
+                        €70.04<span style="font-size: 1.1rem; color: #64748b; font-weight: 500;">/6 mo</span></div>
+                    <p style="font-size: 0.95rem; color: #64748b; margin-top: -1rem; font-weight: 500;">Only €11.67 per
+                        month</p>
+                    <div class="pricing-benefits" style="text-align: left; margin: 2rem 0; width: 100%;">
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            Health Transformation
+                        </div>
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            Priority AI Support
+                        </div>
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            Advanced Insights
+                        </div>
+                    </div>
+                </div>
+                <a href="https://hotmart.com/en/marketplace/products/my-glowfit/T104655350C?off=cxo70yf1"
+                    target="_blank"
+                    style="display: block; width: 100%; background: #10b981; color: white; padding: 1.1rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1rem; margin-top: auto;">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Yearly Plan (MOST POPULAR) -->
+            <div class="pricing-card-saas featured"
+                style="background: #ffffff; padding: 30px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); text-align: center; display: flex; flex-direction: column; align-items: center; height: 100%; position: relative; border: 2px solid #059669; transform: scale(1.05); z-index: 2;">
+                <div
+                    style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 5;">
+                    <div
+                        style="background: #059669; color: white; padding: 6px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase;">
+                        Most Popular</div>
+                    <div
+                        style="background: #ef4444; color: white; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">
+                        Save 10%</div>
+                </div>
+                <div style="width: 100%; margin-top: 1rem;">
+                    <h3 style="color: #2c3e50; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Yearly Plan
+                    </h3>
+                    <div class="price" style="font-size: 2.75rem; font-weight: 800; margin: 1.5rem 0; color: #2c3e50;">
+                        €132.70<span style="font-size: 1.1rem; color: #64748b; font-weight: 500;">/yr</span></div>
+                    <p style="font-size: 0.95rem; color: #64748b; margin-top: -1rem; font-weight: 500;">Only €11.05 per
+                        month</p>
+                    <div class="pricing-benefits" style="text-align: left; margin: 2rem 0; width: 100%;">
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            Ultimate Journey
+                        </div>
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            One-on-One Access
+                        </div>
+                        <div
+                            style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; color: #475569; font-size: 0.95rem;">
+                            <ion-icon name="checkmark-sharp"
+                                style="color: #10b981; font-size: 1.25rem; font-weight: bold;"></ion-icon>
+                            Premium Protocols
+                        </div>
+                    </div>
+                </div>
+                <a href="https://hotmart.com/en/marketplace/products/my-glowfit/T104655350C?off=27x71wvs"
+                    target="_blank"
+                    style="display: block; width: 100%; background: #10b981; color: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 1.2rem; margin-top: auto;">
+                    Get Started Now
+                </a>
+            </div>
+        </div>
+
+        <div
+            style="margin-top: 1rem; font-size: 0.9rem; display: flex; justify-content: center; gap: 1.5rem; color: var(--text-secondary);">
+            <span>🔒 Secure SSL Checkout</span>
+            <span>✅ 30-Day Money-Back Guarantee</span>
+            <span>💳 Automated Recurring Bills</span>
         </div>
 
         <footer class="footer">
