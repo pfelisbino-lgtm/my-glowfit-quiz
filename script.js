@@ -65,6 +65,15 @@ const diagnoses = {
         solution: "My Glowfit has specialized protocols for each type of localized fat.",
         gauge: 60,
         icon: "🎯"
+    },
+    "wellness": {
+        title: "General Wellness",
+        level: "MODERATE",
+        description: "Your body needs a metabolic reset to feel its best.",
+        reasons: ["Modern lifestyle habits", "Stress and lack of proper rest", "Unbalanced nutrition"],
+        solution: "My Glowfit will help you implement sustainable, healthy habits for life.",
+        gauge: 50,
+        icon: "✨"
     }
 };
 
@@ -206,8 +215,10 @@ function renderStep(stepIndex) {
 // --- Helper Components ---
 
 function createOptionButton(text, icon, currentStepIdx, key) {
+    // Escape single quotes to prevent breaking the onclick handler
+    const safeText = text.replace(/'/g, "\\'");
     return `
-    <div class="option-card" onclick="selectOption('${key}', '${text}', ${currentStepIdx})">
+    <div class="option-card" onclick="selectOption('${key}', '${safeText}', ${currentStepIdx})">
         <div class="option-icon">${icon}</div>
         <div class="option-text">
             <div class="option-title">${text}</div>
@@ -237,6 +248,17 @@ function nextStep() {
 
 function selectOption(key, value, stepIdx) {
     answers[key] = value;
+
+    // Safety net: Set default activity factor if "I don't know" is selected, in case calculations are added later
+    if (key === 'activity' && value.includes("I don't know")) {
+        answers['activity_factor'] = 1.2;
+    }
+
+    // Safety net: Set default target weight flag if "I don't have a weight goal" is selected
+    if (key === 'goal' && value.includes("I don't have a weight goal")) {
+        answers['bypass_weight_calc'] = true;
+    }
+
     nextStep();
 }
 
@@ -290,7 +312,8 @@ function renderCalculating() {
 }
 
 function renderResult() {
-    const problemKey = answers['problem_key'] || 'engordo_facil';
+    // Global Redirection Rule Fallback
+    const problemKey = (answers['problem_key'] && diagnoses[answers['problem_key']]) ? answers['problem_key'] : 'wellness';
     const diagnosis = diagnoses[problemKey];
 
     const container = document.createElement('div');
@@ -343,7 +366,7 @@ function renderResult() {
                 Unlock Your Full Plan
             </a>
             
-            <button class="btn btn-secondary" style="margin-top: 1rem; border: none; font-size: 0.9rem;">See only basic pricing</button>
+            <button class="btn btn-secondary" onclick="window.location.href='app_sales.html?diagnosis=${problemKey}'" style="margin-top: 1rem; border: none; font-size: 0.9rem; cursor: pointer;">See only basic pricing</button>
         </div>
     `;
 
